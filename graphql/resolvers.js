@@ -2,9 +2,9 @@ import { userResolvers } from "../modules/user/user.resolver.js";
 
 export const resolvers = {
   Query: {
-    ...userResolvers.Query,
+    ...userResolvers.Query
   },
-  // Mutation: {
-  //   ...userResolvers.Mutation,
-  // },
+  Mutation: {
+    ...userResolvers.Mutation,
+  },
 };
