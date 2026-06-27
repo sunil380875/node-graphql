@@ -1,6 +1,6 @@
 import pool from "../db/pool.js";
 
-async function UserTable(){
+async function UserTable() {
     await pool.query(
         `
         CREATE TABLE users (
@@ -14,4 +14,14 @@ async function UserTable(){
     )
 }
 
-UserTable()
+async function AlterUserTable() {
+    await pool.query(
+        `
+        ALTER TABLE users 
+            ADD COLUMN IF NOT EXISTS profile_image VARCHAR(400) DEFAULT NULL 
+        `
+    )
+}
+
+// UserTable();
+AlterUserTable();

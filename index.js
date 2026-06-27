@@ -13,10 +13,27 @@ const server = new ApolloServer({
 
 await server.start();
 
+import jwt from "jsonwebtoken";
+
 app.use(
     "/graphql",
     bodyParser.json(),
-    expressMiddleware(server)
+    expressMiddleware(server, {
+        context: async ({ req }) => {
+            const token = req.headers.token || "";
+            let user = null;
+            if (token) {
+                try {
+                    // Extract the token (handles both raw token and "Bearer <token>")
+                    const actualToken = token
+                    user = jwt.verify(actualToken, process.env.JWT_SECRET);
+                } catch (e) {
+                    console.log("Token verification failed", e.message);
+                }
+            }
+            return { user };
+        }
+    })
 );
 
 app.listen(4000, () => {
