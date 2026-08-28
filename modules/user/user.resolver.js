@@ -1,5 +1,9 @@
+import { EmailScalar } from "./user.scalar.js";
 import userService from "./user.service.js";
+
 export const userResolvers = {
+    Email:EmailScalar,
+    
     Query: {
         getAllUser: async () => await userService.getAllUser(),
         getUserById: async (_, { id }) => await userService.getUserById(id)

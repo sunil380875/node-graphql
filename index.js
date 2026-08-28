@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import { typeDefs } from "./graphql/typeDefs.js";
 import { resolvers } from "./graphql/resolvers.js";
 const app = express();
+import jwt from "jsonwebtoken";
 
 const server = new ApolloServer({
     typeDefs,
@@ -13,7 +14,6 @@ const server = new ApolloServer({
 
 await server.start();
 
-import jwt from "jsonwebtoken";
 
 app.use(
     "/graphql",

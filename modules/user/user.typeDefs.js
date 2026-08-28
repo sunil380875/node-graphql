@@ -1,25 +1,25 @@
 export const userTypeDef = `
   type SaveUser {
     name: String
-    email: String
+    email: Email
     password:String
   }
 
   type GetUser {
     name: String
-    email: String
+    email: Email
     password:String
     id:String
   }
 
   input UserInput {
     name: String!
-    email: String!
+    email: Email!
     password: String!
   }
   input UserUpdate {
     name: String!
-    email: String!
+    email: Email!
   }
   type Mutation {
     saveUser(input: UserInput!): SaveUser
