@@ -25,7 +25,7 @@ app.use(
             if (token) {
                 try {
                     // Extract the token (handles both raw token and "Bearer <token>")
-                    const actualToken = token
+                    const actualToken = token.startsWith("Bearer ") ? token.split(" ")[1] : token;
                     user = jwt.verify(actualToken, process.env.JWT_SECRET);
                 } catch (e) {
                     console.log("Token verification failed", e.message);
